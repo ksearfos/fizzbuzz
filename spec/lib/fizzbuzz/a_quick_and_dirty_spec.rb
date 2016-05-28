@@ -8,6 +8,10 @@ describe FizzBuzz do
       expect { FizzBuzz.quick_and_dirty }.to output(expected).to_stdout
     end
 
+    # THIS is annoying....
+    # What happens if I change the requirements to be 1 to 10 million?
+    # What happens if I change fizz/buzz to flip/blip?
+    # What happens if I add the requirement that multiples of 2 are 'boom'?
     let(:expected) do <<-OUT
 1
 2
