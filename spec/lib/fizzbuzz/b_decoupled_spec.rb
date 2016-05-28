@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe FizzBuzz do
   describe '.decoupled' do
-    let(:fb) { 'number' }   # this can be anything, we really don't care
-
     # BETTER, but there are still inefficiencies
     # What happens if I change the requirements to be 1 to 10 million?
     # We still have to run the loop a million times
@@ -11,10 +9,10 @@ describe FizzBuzz do
     it 'outputs the Fizzbuzz numbers from 1 to 100' do
       (1..100).each do |n|
         # gee... this is much nicer
-        expect(FizzBuzz).to receive(:fizzbuzz_number).with(n).ordered.and_return(fb)
+        expect(FizzBuzz).to receive(:fizzbuzz_number).with(n).ordered.and_return('number')
       end
       # yeah, this too
-      expect { FizzBuzz.decoupled }.to output("#{fb}\n" * 100).to_stdout
+      expect { FizzBuzz.decoupled }.to output("number\n" * 100).to_stdout
     end
   end
 

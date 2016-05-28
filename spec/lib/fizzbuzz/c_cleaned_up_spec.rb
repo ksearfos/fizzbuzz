@@ -2,13 +2,11 @@ require 'spec_helper'
 
 describe FizzBuzz do
   describe '.decoupled' do
-    let(:fb) { 'number' }   # this can be anything, we really don't care
-
     # oo! this is way better, only running once through the looping
     # also easier if we decide to write to a file instead of STDOUT
     it 'outputs the Fizzbuzz numbers from the given min to the given max' do
-      expect(FizzBuzz).to receive(:new_fizzbuzz_number).with(1).and_return(fb)
-      expect { FizzBuzz.cleaned_up(min = 1, max = 1) }.to output("#{fb}\n").to_stdout
+      expect(FizzBuzz).to receive(:new_fizzbuzz_number).with(1).and_return('number')
+      expect { FizzBuzz.cleaned_up(1, 1) }.to output("number\n").to_stdout
     end
   end
 
@@ -16,19 +14,19 @@ describe FizzBuzz do
   # and once again, adding a requirement that mod2 => boom is EASY
   describe '.new_fizzbuzz_number' do
     context 'when given a multiple of 3' do
-      it 'is Fizz' do
+      it "is #{FizzBuzz::MOD_3}" do
         expect(FizzBuzz.new_fizzbuzz_number(3)).to eq FizzBuzz::MOD_3
       end
 
       context 'that is also a multiple of 5' do
-        it 'is FizzBuzz' do
+        it "is #{FizzBuzz::MOD_3}#{FizzBuzz::MOD_5}" do
           expect(FizzBuzz.new_fizzbuzz_number(15)).to eq FizzBuzz::MOD_3 + FizzBuzz::MOD_5
         end
       end
     end
 
     context 'when given a multiple of 5 (that is not also a multiple of 3)' do
-      it 'is Buzz' do
+      it "is #{FizzBuzz::MOD_5}" do
         expect(FizzBuzz.new_fizzbuzz_number(5)).to eq FizzBuzz::MOD_5
       end
     end
