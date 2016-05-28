@@ -1,7 +1,6 @@
 require 'rspec'
-require 'lib/fizzbuzz'
+require 'fizzbuzz'
 
 RSpec.configure do |c|
 	c.color = true
 end
-
