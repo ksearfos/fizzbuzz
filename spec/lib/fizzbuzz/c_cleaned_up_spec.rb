@@ -1,12 +1,20 @@
 require 'spec_helper'
 
 describe FizzBuzz do
-  describe '.decoupled' do
-    # oo! this is way better, only running once through the looping
-    # also easier if we decide to write to a file instead of STDOUT
+  # this makes it easier if we decide to write to a file instead of STDOUT
+  # also makes it easier to test really big ranges sent to cleaned_up
+  describe '.display' do
+    it 'outputs the Fizzbuzz numbers from the given min to the given max' do
+      expect(FizzBuzz).to receive(:cleaned_up).with(1, 1).and_return(['number'])
+      expect { FizzBuzz.display(1, 1) }.to output("number\n").to_stdout
+    end
+  end
+
+  # oo! this is way better, only running once through the looping
+  describe '.cleaned_up' do
     it 'outputs the Fizzbuzz numbers from the given min to the given max' do
       expect(FizzBuzz).to receive(:new_fizzbuzz_number).with(1).and_return('number')
-      expect { FizzBuzz.cleaned_up(1, 1) }.to output("number\n").to_stdout
+      expect(FizzBuzz.cleaned_up(1, 1)).to eq %w(number)
     end
   end
 

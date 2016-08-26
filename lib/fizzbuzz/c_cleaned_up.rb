@@ -2,9 +2,13 @@ module FizzBuzz
   MOD_3 = 'Fizz'.freeze
   MOD_5 = 'Buzz'.freeze
 
-  def self.cleaned_up min = 1, max = 100
-    (min..max).each do |number|
-      puts new_fizzbuzz_number(number)
+  def self.display min = 1, max = 100
+    puts cleaned_up(min, max).join("\n")
+  end
+
+  def self.cleaned_up min, max
+    (min..max).to_a.map do |number|
+      new_fizzbuzz_number(number)
     end
   end
 
